@@ -68,6 +68,10 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
         return view('home');
     });
 
+
+    //this is testquestions Module route
+   // Route::get('testquestions','TestquestionController@index');
+    Route::resource('testquestions', 'TestquestionController');
 	//Departments
 	Route::resource('departments', 'DepartmentController');
 
@@ -112,3 +116,4 @@ Route::group(['middleware' => 'auth'], function(){
 //Socialite
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+

@@ -3,6 +3,6 @@
         <strong></strong>
     </div>
     <div>
-        <strong>Copyright</strong> Fictionsoft &copy; {{ date('Y') }}
+        <strong>Copyright</strong> Webengine Creation &copy; {{ date('Y') }}
     </div>
 </div>
