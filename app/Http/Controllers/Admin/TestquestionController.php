@@ -11,6 +11,7 @@ use App\Model\Department;
 use App\Model\Subject;
 use App\Model\Question;
 use App\Model\QuestionTemplate;
+
 use App\Http\Controllers\Components\fileHandlerComponent;
 use Str;
 
@@ -69,8 +70,21 @@ class TestquestionController extends Controller
     public function store(Request $request)
     {
         //
-        $data =  $request->all();
-        dd($data);
+           $request->validate([
+
+            'question' => 'required',
+            'question_type_id' => 'required',
+            'subject_id' => 'required',
+            'option1' => 'required',
+            'option2' => 'required',
+            'option3' => 'required',
+            'option4' => 'required',
+            'right_ans' => 'required',
+
+           ]);
+         $request['slug'] = Str::slug($request->question);
+
+          Testquestions::create($request->all());
     }
 
     /**

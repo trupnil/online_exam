@@ -54,10 +54,13 @@
                  <li class="{{ Request::is('question-template*') ? 'active' : '' }}">
                     <a href="{{ route('admin.question-templates.index') }}"><i class="fa fa-file-text"></i><span class="nav-label">Exam</span></a>
                  </li>
-
-                 <li class="{{ Request::is('questions*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.questions.index') }}"><i style="font-size: 20px" class="fa fa-question"></i> <span class="nav-label">Questions</span></a>
+                  <li class="{{ Request::is('questions*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.testquestions.index') }}"><i style="font-size: 20px" class="fa fa-question"></i> <span class="nav-label">Test Questions</span></a>
                  </li>
+
+                <!--  <li class="{{ Request::is('questions*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.questions.index') }}"><i style="font-size: 20px" class="fa fa-question"></i> <span class="nav-label">Questions</span></a>
+                 </li> -->
 
                  <li class="{{ Request::is('departments*') ? 'active' : '' }}">
                     <a href="{{ route('admin.departments.index') }}"><i style="font-size: 14px" class="fa fa-users"></i><span class="nav-label">Departments</span></a>
@@ -89,8 +92,12 @@
                 @endphp
 
                 @if(Auth::check() and Auth::user()->account_type_id == 1)
-                    <li class="{{ $current_controller == 'ExaminationController' ? 'active' : '' }}">
+                  <!--   <li class="{{ $current_controller == 'ExaminationController' ? 'active' : '' }}">
                         <a href="{{ route('examination.prepare') }}"><i style="font-size: 18px" class="fa fa-thermometer-empty" aria-hidden="true"></i><span class="nav-label">Exam</span></a>
+                    </li> -->
+
+                     <li class="{{ $current_controller == 'ExaminationController' ? 'active' : '' }}">
+                        <a href="{{ route('examination.prepare') }}"><i style="font-size: 18px" class="fa fa-thermometer-empty" aria-hidden="true"></i><span class="nav-label">Test Exam</span></a>
                     </li>
                 @endif
 
