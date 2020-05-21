@@ -28,4 +28,8 @@ class Testquestions extends Model
 	public function subject(){
         return $this->belongsTo(Subject::class);
 	}
+
+    public function QuestionTemplate(){
+        return $this->belongsTo(QuestionTemplate::class);
+    }
 }

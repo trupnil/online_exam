@@ -8,6 +8,7 @@ use App\Model\Subject;
 use App\Model\QuestionTemplate;
 use App\Testquestions;
 use App\Model\QuestionType;
+use App\History;
 
 
 class TestexaminationController extends Controller
@@ -23,7 +24,7 @@ class TestexaminationController extends Controller
        // $questionTemplates  = QuestionTemplate::with('department','subject');
          $perPage = $request->perPage ?: 10;
 
-           $questionTemplates =  QuestionTemplate::with('department', 'subject', 'studentType');
+        $questionTemplates =  QuestionTemplate::with('department', 'subject', 'studentType');
          $questionTemplates = $questionTemplates->latest()->paginate($perPage);
 
         
@@ -36,10 +37,34 @@ class TestexaminationController extends Controller
       public function start($testid)
     {
         //
+        
          $questions = Testquestions::all();
          //dd($questions);
          return view('frontend.testexam.start',compact('questions'));
     }
+      public function savetest(Request $request)
+    {
+        //
+        $request->validate([
+
+            'testquestion_id' => 'required',
+            'user_id' => 'required',
+            'subject_id' => 'required',
+            'question_template_id' => 'required',
+
+        ]);
+          
+
+        History::create($request->all());
+
+
+
+      
+
+      
+
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -25,19 +25,27 @@
         
       
 
-        <form action="grade.php" method="post" id="quiz">
+        <form action="" method="POST" >
+
         
             <ol>
 
-                @php
-                 
-                @endphp
+               
 
                   @foreach($questions as $question)
+
+                
+            
+                 
                       
                 <li>
                 
                     <h3> {{ $question->question  }} </h3>
+
+                <input type="hidden" name="question_id" value="{{ $question->id }}" id="question_id">
+                       <input type="hidden" name="subject_id" value="{{ $question->subject_id }}" id="subject_id">
+                       <input type="hidden" name="question_template_id" value="{{ $question->question_template_id }}" id="question_template_id">
+                       <input type="hidden" name="user_id" value="{{ Auth::user()->id  }}" id="user_id">
                     
                     <div>
                         <input type="radio" name="answer{{$question->id}}" value="{{ $question->option1 }}" onclick="check(this.value)" />
@@ -60,6 +68,7 @@
                     </div>
                 
                 </li>
+                 <input type="button" value="Lock"  />
                 
                 @endforeach
             
@@ -85,9 +94,39 @@
 <script type="text/javascript">
     
 
+
+
 function check($value)
 {
-        var $answer = $value;
+        var answer = $value;
+
+
+        $(document).ready(function(){
+
+            
+          var testquestion_id = $('#question_id').val();
+          var user_id = $('#user_id').val();
+          var subject_id = $('#subject_id').val();
+          var question_template_id = $('#question_template_id').val();
+          $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       }
+    });
+
+           $.ajax({
+                url:"{{ route('Frontend.savetest') }}",
+                type:"POST",
+                data:{'testquestion_id':testquestion_id, 'user_id': user_id, 'subject_id': subject_id,'question_template_id':question_template_id,'answer':answer },
+                success:function(response)
+                {
+                    alert(response);
+                }
+
+
+           });   
+
+        });
 
         //Ajax remaing
 

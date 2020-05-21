@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
      Route::get('testexam','TestexaminationController@index');
 
      Route::get('startexam/{test_id}','TestexaminationController@start')->name('startexam');
+     route::POST('/savetest','TestexaminationController@savetest')->name('Frontend.savetest');
 
     //examination
     Route::get('examination', 'ExaminationController@prepareExam')->name('examination.prepare');
