@@ -31,14 +31,14 @@ class TestquestionController extends Controller
         $keyword = $request->keyword;
 
         $questions = Testquestions::with('template', 'questionType', 'subject');
-      //  dd($questions);
-        // if($keyword){
+     //  dd($questions);
+        if($keyword){
 
-        //     $keyword = '%'.$keyword.'%';
+            $keyword = '%'.$keyword.'%';
 
-        //     $questions = $questions->where('question', 'like', $keyword)
-        //         ->orWhere('description', 'like', $keyword);
-        // }
+            $questions = $questions->where('question', 'like', $keyword)
+                ->orWhere('description', 'like', $keyword);
+        }
 
          $questions = $questions->latest()->paginate($perPage);
 

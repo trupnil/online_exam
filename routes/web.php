@@ -48,6 +48,10 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
     Route::get('practice/summery', 'PracticeController@summery')->name('practice.summery');
     Route::post('practice/finished', 'PracticeController@finished')->name('practice.question.finished');
     Route::post('practice/restart', 'PracticeController@restart')->name('practice.question.restart');
+    //Test exam Mudle route
+     Route::get('testexam','TestexaminationController@index');
+
+     Route::get('startexam/{test_id}','TestexaminationController@start')->name('startexam');
 
     //examination
     Route::get('examination', 'ExaminationController@prepareExam')->name('examination.prepare');
@@ -72,6 +76,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
     //this is testquestions Module route
    // Route::get('testquestions','TestquestionController@index');
     Route::resource('testquestions', 'TestquestionController');
+    //test exam start
+   
+
 	//Departments
 	Route::resource('departments', 'DepartmentController');
 
@@ -92,6 +99,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
 
 	//Notifications
     Route::resource('notifications', 'NotificationController');
+
 
     //Payments
     Route::get('payments', 'PaymentController@index')->name('payments.index');
