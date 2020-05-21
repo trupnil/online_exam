@@ -21,7 +21,7 @@
 
 <div id="page-wrap">
 
-        <h1>Your Test is started</h1>
+        <h1>Your Test is started {{ Auth::user()->id }}</h1>
         
       
 
@@ -29,29 +29,33 @@
         
             <ol>
 
+                @php
+                 
+                @endphp
+
                   @foreach($questions as $question)
-            
+                      
                 <li>
                 
                     <h3> {{ $question->question  }} </h3>
                     
                     <div>
-                        <input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
+                        <input type="radio" name="answer{{$question->id}}" value="{{ $question->option1 }}" onclick="check(this.value)" />
                         <label for="question-1-answers-A">A) {{ $question->option1 }} </label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="question-1-answers" id="question-1-answers-B" value="B" />
+                        <input type="radio" name="answer{{$question->id}}" value="{{ $question->option1 }}" onclick="check(this.value)" />
                         <label for="question-1-answers-B">B) {{ $question->option2 }}</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="question-1-answers" id="question-1-answers-C" value="C" />
+                        <input type="radio" name="answer{{$question->id}}"  value="{{ $question->option1 }}" onclick="check(this.value)" />
                         <label for="question-1-answers-C">C) {{ $question->option3 }}</label>
                     </div>
                     
                     <div>
-                        <input type="radio" name="question-1-answers" id="question-1-answers-D" value="D" />
+                        <input type="radio" name="answer{{$question->id}}" value="{{ $question->option1 }}" onclick="check(this.value)" />
                         <label for="question-1-answers-D">D) {{ $question->option4 }}</label>
                     </div>
                 
@@ -77,5 +81,19 @@
 @endsection
 
 @section('custom-js')
+
+<script type="text/javascript">
+    
+
+function check($value)
+{
+        var $answer = $value;
+
+        //Ajax remaing
+
+}
+
+
+</script>
 @endsection
 
